@@ -3,7 +3,6 @@ package com.kata.preproject.PP_3_1_2_SpringBoot.controllers;
 
 import com.kata.preproject.PP_3_1_2_SpringBoot.models.Person;
 import com.kata.preproject.PP_3_1_2_SpringBoot.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,6 @@ public class PeopleController {
 
     private final PersonService personService;
 
-    @Autowired
     public PeopleController(PersonService personService) {
         this.personService = personService;
     }
