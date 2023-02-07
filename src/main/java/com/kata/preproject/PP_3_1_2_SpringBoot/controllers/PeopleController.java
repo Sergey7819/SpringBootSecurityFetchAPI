@@ -29,9 +29,9 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", personService.show(id));
-        return "people/show";
+    public String getUser(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", personService.getUser(id));
+        return "people/getUser";
     }
 
     @GetMapping("/new")
@@ -51,7 +51,7 @@ public class PeopleController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", personService.show(id));
+        model.addAttribute("person", personService.getUser(id));
         return "people/edit";
     }
 
