@@ -21,8 +21,8 @@ public class PersonServiceImpl implements PersonService {
 
 
     @Transactional
-    public List<Person> index() {
-        return personDAO.index();
+    public List<Person> getAllPeople() {
+        return personDAO.getAllPeople();
 
     }
 
@@ -38,8 +38,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Transactional
-    public void update(int id, Person updatedPerson) {
-        personDAO.update(id, updatedPerson);
+    public void update(Person updatedPerson) {
+        Person personToBeUpdated = personDAO.getUser(updatedPerson.getId());
+        personToBeUpdated.setName(updatedPerson.getName());
+        personToBeUpdated.setAge(updatedPerson.getAge());
+        personToBeUpdated.setEmail(updatedPerson.getEmail());
     }
 
     @Transactional

@@ -16,7 +16,7 @@ public class PersonDAOImpl implements PersonDAO {
 
 
     @Override
-    public List<Person> index() {
+    public List<Person> getAllPeople() {
         return entityManager.createQuery("select p from Person p", Person.class).getResultList();
 
     }
@@ -31,13 +31,6 @@ public class PersonDAOImpl implements PersonDAO {
         entityManager.persist(person);
     }
 
-    @Override
-    public void update(int id, Person updatedPerson) {
-        Person personToBeUpdated = entityManager.find(Person.class, id);
-        personToBeUpdated.setName(updatedPerson.getName());
-        personToBeUpdated.setAge(updatedPerson.getAge());
-        personToBeUpdated.setEmail(updatedPerson.getEmail());
-    }
 
     @Override
     public void delete(int id) {
