@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
-<body>
+<body th:align="center">
 <form th:method="POST" th:action="@{/admin}" th:object="${user}">
   <label for="username">Enter name: </label>
   <input type="text" th:field="*{username}" id="username"/>
@@ -30,10 +30,10 @@
     <label>Roles:</label>
     <div>
       <label>
-        <input type="checkbox" name="nameRole" value="ROLE_USER" /> User
+        <input type="radio" name="userRole" value="ROLE_USER" /> User
       </label>
       <label>
-        <input type="checkbox" name="nameRole" value="ROLE_ADMIN" /> Admin
+        <input type="radio" name="userRole" value="ROLE_ADMIN" /> Admin
       </label>
     </div>
   </div>
@@ -41,6 +41,8 @@
   <input type="submit" value="Create user"/>
 </form>
 <br>
-<a href="/logout">Logout</a>
+<form name="logoutForm" th:action="@{/logout}" method="GET">
+  <input type="submit" value="Logout"/>
+</form>
 </body>
 </html>

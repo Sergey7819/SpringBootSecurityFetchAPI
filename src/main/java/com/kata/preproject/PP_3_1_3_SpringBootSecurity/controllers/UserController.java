@@ -1,9 +1,10 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.controllers;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.controllers;
 
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.Role;
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.User;
-import com.kata.preproject.PP_3_1_2_SpringBoot.service.RoleService;
-import com.kata.preproject.PP_3_1_2_SpringBoot.service.UserService;
+
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.service.RoleService;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

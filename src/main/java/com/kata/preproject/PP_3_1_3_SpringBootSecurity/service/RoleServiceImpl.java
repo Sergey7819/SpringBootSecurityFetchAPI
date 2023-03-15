@@ -1,12 +1,11 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.service;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
-import com.kata.preproject.PP_3_1_2_SpringBoot.dao.RoleDAO;
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.Role;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao.RoleDAO;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional

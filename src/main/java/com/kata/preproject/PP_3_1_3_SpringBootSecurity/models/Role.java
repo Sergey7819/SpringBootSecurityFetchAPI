@@ -1,4 +1,4 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.models;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.models;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,4 +1,4 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.configs;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.configs;
 
 
 import org.springframework.context.annotation.Bean;

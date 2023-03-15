@@ -1,7 +1,6 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.service;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.User;
-
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
 import java.util.List;
 
 public interface UserService {
@@ -11,8 +10,6 @@ public interface UserService {
     void update(User user);
     void delete(Long id);
     User getUserByUsername(String username);
-
-
 }
 
 

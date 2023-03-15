@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<h1>Spring boot security page!</h1>
+<h2>User profile</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Role</th>
+    </tr>
+    <tr th:each="user :${user}"></tr>
+    <td th:utext="${user.getId()}"></td>
+    <td th:utext="${user.getUsername()}"></td>
+    <td th:utext="${user.getAge()}"></td>
+    <td th:utext="${user.getEmail()}"></td>
+    <td>
+        <a th:each="role :${user.roles}" th:utext="${role.name.replace('ROLE_', ' ')}">
+        </a>
+    </td>
+</table>
+<form name="logoutForm" th:action="@{/logout}" method="GET">
+    <input type="submit" value="Logout">
+</form>
+</body>
+</html>

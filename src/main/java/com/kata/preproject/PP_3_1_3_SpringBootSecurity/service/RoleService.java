@@ -1,9 +1,7 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.service;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.Role;
-
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
 import java.util.List;
-
 
 public interface RoleService {
     List<Role> getAllRoles();

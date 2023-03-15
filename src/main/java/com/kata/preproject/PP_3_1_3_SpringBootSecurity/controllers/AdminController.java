@@ -1,10 +1,9 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.controllers;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.controllers;
 
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.Role;
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.User;
-import com.kata.preproject.PP_3_1_2_SpringBoot.service.RoleService;
-import com.kata.preproject.PP_3_1_2_SpringBoot.service.UserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.service.RoleService;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +15,11 @@ import java.util.*;
 public class AdminController {
     private final UserService userService;
     private final RoleService roleService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    public AdminController(UserService userService, RoleService roleService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @GetMapping()
@@ -38,18 +35,18 @@ public class AdminController {
         return "new";
     }
 
+
     @PostMapping()
     public String createUser(@ModelAttribute("user") User user,
                              @RequestParam(required = false) String userRole) {
         Set<Role> roles = new HashSet<>();
-        roles.add(roleService.getRoleByName("ROLE_USER"));
-        if (userRole != null && userRole.equals(
-                roleService.getRoleByName("ROLE_ADMIN").getName())) {
-            roles.add(roleService.getRoleByName("ROLE_ADMIN"));
+        if (userRole != null && roleService.getRoleByName(userRole) != null) {
+            roles.add(roleService.getRoleByName(userRole));
+        } else {
+            roles.add(roleService.getRoleByName("ROLE_USER"));
         }
         user.setRoles(roles);
         userService.save(user);
-
         return "redirect:/admin";
     }
 
@@ -82,3 +79,4 @@ public class AdminController {
         return "redirect:/admin";
     }
 }
+

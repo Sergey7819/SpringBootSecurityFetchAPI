@@ -1,10 +1,9 @@
-package com.kata.preproject.PP_3_1_2_SpringBoot.service;
+package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
-
-import com.kata.preproject.PP_3_1_2_SpringBoot.dao.RoleDAO;
-import com.kata.preproject.PP_3_1_2_SpringBoot.dao.UserDAO;
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.Role;
-import com.kata.preproject.PP_3_1_2_SpringBoot.models.User;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao.RoleDAO;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao.UserDAO;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,13 +27,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
     private final UserDAO userDAO;
-    private final RoleDAO roleDAO;
-
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserDAO userDAO, BCryptPasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
-        this.roleDAO = roleDAO;
         this.passwordEncoder = passwordEncoder;
     }
 
