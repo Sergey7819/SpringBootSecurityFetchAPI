@@ -1,36 +1,29 @@
 package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
-import com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao.RoleDAO;
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao.UserDAO;
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
 
     private final UserDAO userDAO;
+    private final RoleService roleService;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDAO userDAO, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserDAO userDAO, RoleService roleService, BCryptPasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
+        this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -46,6 +39,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void save(User user) {
+        if (user.getRoles() == null) {
+        user.setRoles(Set.of(roleService.getRoleByName("USER")));
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.save(user);
 
@@ -63,24 +59,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         userDAO.update(user);
     }
-
-
     @Override
     public void delete(Long id) {
         userDAO.delete(id);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("User with username %s not found", username));
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Set<Role> roles) {
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
-    }
 }

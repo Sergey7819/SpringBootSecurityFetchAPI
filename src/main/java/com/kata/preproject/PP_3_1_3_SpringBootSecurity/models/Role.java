@@ -1,27 +1,24 @@
 package com.kata.preproject.PP_3_1_3_SpringBootSecurity.models;
 
 import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
+
 
 
 @Entity
 @Table(name = "role")
-public class Role implements GrantedAuthority, Serializable {
+public class Role implements GrantedAuthority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     @Column(name = "role_id")
     private Long id;
 
     @Column(name = "role_name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> setUsers;
 
     public Role() {
     }
@@ -46,28 +43,18 @@ public class Role implements GrantedAuthority, Serializable {
         this.name = name;
     }
 
-    public Set<User> getSetUsers() {
-        return setUsers;
-    }
 
-    public void setSetUsers(Set<User> setUsers) {
-        this.setUsers = setUsers;
+    @Override
+    public String toString() {
+        return this.name;
     }
-
 
     @Override
     public String getAuthority() {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", setUsers=" + setUsers +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object obj) {

@@ -13,7 +13,6 @@ public class UserDAOImpl implements UserDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
     public void update(User user) {
         entityManager.merge(user);
@@ -22,7 +21,6 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         return entityManager.createQuery("FROM User", User.class).getResultList();
-
     }
 
     @Override
@@ -31,12 +29,10 @@ public class UserDAOImpl implements UserDAO {
                 .setParameter("id", id).getSingleResult();
     }
 
-
     @Override
     public void save(User user) {
         entityManager.persist(user);
     }
-
 
     @Override
     public void delete(Long id) {
@@ -44,7 +40,6 @@ public class UserDAOImpl implements UserDAO {
             entityManager.remove(getUserById(id));
         }
     }
-
 
     @Override
     public User getUserByUsername(String username) {
