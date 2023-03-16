@@ -29,7 +29,6 @@ public class UserController {
         this.roleService = roleService;
     }
 
-
     @GetMapping("/registration")
     public String registrationPage(Model model) {
         model.addAttribute("user", new User());

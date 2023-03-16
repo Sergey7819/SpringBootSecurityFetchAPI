@@ -2,7 +2,6 @@ package com.kata.preproject.PP_3_1_3_SpringBootSecurity.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 
@@ -18,7 +17,6 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "role_name")
     private String name;
-
 
     public Role() {
     }
@@ -43,7 +41,6 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-
     @Override
     public String toString() {
         return this.name;
@@ -53,8 +50,6 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return name;
     }
-
-
 
     @Override
     public boolean equals(Object obj) {

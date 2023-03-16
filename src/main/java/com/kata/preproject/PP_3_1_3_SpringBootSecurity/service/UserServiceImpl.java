@@ -1,13 +1,11 @@
 package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao.UserDAO;
-import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,9 +37,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-        if (user.getRoles() == null) {
+        if (user.getRoles() == null)
         user.setRoles(Set.of(roleService.getRoleByName("USER")));
-        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.save(user);
 

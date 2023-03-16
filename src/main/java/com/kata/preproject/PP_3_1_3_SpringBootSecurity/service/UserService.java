@@ -1,7 +1,6 @@
 package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 

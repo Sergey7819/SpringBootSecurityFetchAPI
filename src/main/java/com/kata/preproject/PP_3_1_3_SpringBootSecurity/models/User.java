@@ -36,10 +36,8 @@ public class User implements UserDetails {
     @NotEmpty(message = "Email should not be empty")
     @Email
     private String email;
-
     @Column(name = "password")
     private String password;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -133,8 +131,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
 
     @Override
     public boolean equals(Object o) {
