@@ -32,9 +32,9 @@ public class DataInit {
         roleService.saveRole(roleUser);
 
         User admin = new User("admin", 34, "admin@gmail.com", "100", Set.of(roleAdmin, roleUser));
-        userService.save(admin);
+        userService.save(admin, "ROLE_ADMIN");
 
         User user = new User("user", 22, "user@gmail.com",  "100", Set.of(roleUser));
-        userService.save(user);
+        userService.save(user, "ROLE_USER");
     }
 }

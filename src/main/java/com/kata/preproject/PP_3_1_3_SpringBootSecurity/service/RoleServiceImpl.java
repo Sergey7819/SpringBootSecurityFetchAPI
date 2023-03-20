@@ -2,6 +2,7 @@ package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
 
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao.RoleDAO;
 import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.Role;
+import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,4 +28,13 @@ public class RoleServiceImpl implements RoleService {
     public void saveRole(Role role) {
         roleDAO.saveRole(role);
     }
+
+    public Role determineUserRole(User user) {
+        if (user.getRoles() != null && roleDAO.getRoleByName("ADMIN") != null) {
+            return roleDAO.getRoleByName("ADMIN");
+        } else {
+            return roleDAO.getRoleByName("USER");
+        }
+    }
+
 }

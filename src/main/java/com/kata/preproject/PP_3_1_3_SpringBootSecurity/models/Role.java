@@ -42,11 +42,6 @@ public class Role implements GrantedAuthority {
     }
 
     @Override
-    public String toString() {
-        return this.name;
-    }
-
-    @Override
     public String getAuthority() {
         return name;
     }
@@ -64,5 +59,12 @@ public class Role implements GrantedAuthority {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

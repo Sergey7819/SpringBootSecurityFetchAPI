@@ -36,13 +36,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) {
-        if (user.getRoles() == null)
+    public void save(User user, String userRole) {
+        if (userRole != null && roleService.getRoleByName(userRole) != null) {
+            user.setRoles(Set.of(roleService.getRoleByName(userRole)));
+        } else {
         user.setRoles(Set.of(roleService.getRoleByName("USER")));
-
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDAO.save(user);
-
     }
 
     @Override

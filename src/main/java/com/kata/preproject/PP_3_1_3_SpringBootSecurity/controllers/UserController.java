@@ -37,10 +37,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("user") User user) {
-        Role role = new Role("ROLE_USER");
-        roleService.saveRole(role);
-        user.setRoles(Set.of(role));
-        userService.save(user);
+        userService.save(user, "ROLE_USER");
         return "redirect:/login";
     }
 
