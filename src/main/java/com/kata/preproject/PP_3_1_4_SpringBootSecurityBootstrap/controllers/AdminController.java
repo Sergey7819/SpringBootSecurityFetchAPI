@@ -36,11 +36,6 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit/{id}")
-    public String editUser(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("user", userService.getUserById(id));
-        return "editUser";
-    }
 
     @PutMapping("/edit/{id}")
     public String updateUser(@ModelAttribute("user") User user,
@@ -59,7 +54,7 @@ public class AdminController {
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute(new User());
-        Map<Role, Boolean> roles = new TreeMap<>((Comparator<Role>) this :: sortingRole);
+        Map<Role, Boolean> roles = new TreeMap<>(this :: sortingRole);
         roleService.getAllRoles().forEach(r -> roles.put(r, false));
         model.addAttribute("roles", roles);
         return "new";
@@ -81,7 +76,7 @@ public class AdminController {
     }
 
     private int sortingRole(Role r1, Role r2) {
-        return (int) (r1.getId() - r2.getId());
+        return (r1.getId() - r2.getId());
     }
 
 }

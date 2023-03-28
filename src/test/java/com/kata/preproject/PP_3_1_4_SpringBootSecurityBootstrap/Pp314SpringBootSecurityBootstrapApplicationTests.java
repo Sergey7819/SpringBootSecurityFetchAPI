@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 @SpringBootTest
-class Pp313SpringBootSecurityApplicationTests {
+class Pp314SpringBootSecurityBootstrapApplicationTests {
 
 	@Test
 	void contextLoads() {
