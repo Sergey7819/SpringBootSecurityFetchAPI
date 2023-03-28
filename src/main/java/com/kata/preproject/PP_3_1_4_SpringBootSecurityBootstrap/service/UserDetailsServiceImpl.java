@@ -1,4 +1,4 @@
-package com.kata.preproject.PP_3_1_3_SpringBootSecurity.service;
+package com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +15,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userService.getUserByUsername(username);
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return userService.getUserByUsername(s);
     }
 }

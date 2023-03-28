@@ -1,6 +1,6 @@
-package com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao;
+package com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.dao;
 
-import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
+import com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.models.User;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -42,7 +42,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByUsername(String username) {
-        return entityManager.createQuery("select u from User u left join fetch u.roles where u.username=:username", User.class)
+        return entityManager.createQuery("select u from User u left join fetch u.roles where u.userName=:username", User.class)
                 .setParameter("username", username).getSingleResult();
     }
 }

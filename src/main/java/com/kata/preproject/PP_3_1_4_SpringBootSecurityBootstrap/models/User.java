@@ -1,15 +1,10 @@
-package com.kata.preproject.PP_3_1_3_SpringBootSecurity.models;
+package com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.models;
 
-import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -23,19 +18,17 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
-    @Column(name = "username")
-    private String username;
+    @Column(name = "name")
+    private String name;
 
-    @Min(value = 0, message = "Age should be greater than 0")
+    @Column(name = "lastName")
+    private String lastName;
+
     @Column(name = "age")
     private int age;
 
     @Column(name = "email")
-    @NotEmpty(message = "Email should not be empty")
-    @Email
-    private String email;
+    private String userName;
     @Column(name = "password")
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -48,10 +41,11 @@ public class User implements UserDetails {
     }
 
 
-    public User(String username, int age, String email, String password, Set<Role> roles) {
-        this.username = username;
+    public User(String name, String lastName, int age, String userName, String password, Set<Role> roles) {
+        this.name = name;
+        this.lastName = lastName;
         this.age = age;
-        this.email = email;
+        this.userName = userName;
         this.password = password;
         this.roles = roles;
     }
@@ -64,13 +58,21 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    @Override
-    public String getUsername() {
-        return username;
+
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -81,17 +83,22 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.userName;
     }
 
     public void setPassword(String password) {

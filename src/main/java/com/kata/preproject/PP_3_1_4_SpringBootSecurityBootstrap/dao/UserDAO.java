@@ -1,6 +1,6 @@
-package com.kata.preproject.PP_3_1_3_SpringBootSecurity.dao;
+package com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.dao;
 
-import com.kata.preproject.PP_3_1_3_SpringBootSecurity.models.User;
+import com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.models.User;
 import java.util.List;
 public interface UserDAO {
 

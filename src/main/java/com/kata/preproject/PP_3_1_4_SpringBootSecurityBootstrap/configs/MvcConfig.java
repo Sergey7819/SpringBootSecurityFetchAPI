@@ -1,4 +1,4 @@
-package com.kata.preproject.PP_3_1_3_SpringBootSecurity.configs;
+package com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
