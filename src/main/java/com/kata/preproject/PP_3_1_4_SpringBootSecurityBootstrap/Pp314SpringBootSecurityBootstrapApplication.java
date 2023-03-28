@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Pp313SpringBootSecurityApplication {
+public class Pp314SpringBootSecurityBootstrapApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Pp313SpringBootSecurityApplication.class, args);
+		SpringApplication.run(Pp314SpringBootSecurityBootstrapApplication.class, args);
 	}
 }

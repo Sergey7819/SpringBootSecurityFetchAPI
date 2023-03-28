@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.kata.preproject</groupId>
-	<artifactId>PP_3_1_3_SpringBootSecurity</artifactId>
+	<artifactId>PP_3_1_4_SpringBootSecurityBootstrap</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PP_3_1_3_SpringBootSecurity</name>
+	<name>PP_3_1_4_SpringBootSecurityBootstrap</name>
 	<description>CRUD app with Boot</description>
 	<properties>
 		<java.version>11</java.version>
