@@ -28,14 +28,16 @@ public class DataInit {
     public void contextRefreshedEvent() {
         roleService.saveRole(new Role("USER"));
         roleService.saveRole(new Role("ADMIN"));
+        Integer[] usersRoles = {1};
+        Integer[] adminsRoles = {1, 2};
 
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(roleService.getRoleByName("USER"));
-        userService.save(new User("user", "user", 22, "user@mail.ru", "100", userRoles));
+        userService.save(new User("user", "user", 22, "user@mail.ru", "100", userRoles), usersRoles);
 
         Set<Role> adminRoles = new HashSet<>();
         adminRoles.add(roleService.getRoleByName("ADMIN"));
         adminRoles.add(roleService.getRoleByName("USER"));
-        userService.save(new User("admin", "admin", 22, "admin@gmail.com", "100", adminRoles));
+        userService.save(new User("admin", "admin", 22, "admin@gmail.com", "100", adminRoles), adminsRoles);
     }
 }

@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.*;
 
@@ -45,7 +48,8 @@ public class AdminController {
         if (userRoles != null) {
             Arrays.stream(userRoles).forEach(id -> roles.add(roleService.getRoleById(id)));
         }
-        System.out.println(userRoles.length);
+        Logger logger = LoggerFactory.getLogger(getClass());
+        logger.info("userRoles length: {}", userRoles.length);
         user.setRoles(roles);
         userService.update(user);
         return "redirect:/admin";
@@ -65,13 +69,7 @@ public class AdminController {
     @PostMapping()
     public String createUser(@ModelAttribute("user") User user,
                              @RequestParam(value = "roles", required = false) Integer[] userRoles) {
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleService.getRoleByName("USER"));
-        if (userRoles != null) {
-            Arrays.stream(userRoles).forEach(id -> roles.add(roleService.getRoleById(id)));
-        }
-        user.setRoles(roles);
-        userService.save(user);
+        userService.save(user, userRoles);
         return "redirect:/admin";
     }
 
@@ -80,3 +78,6 @@ public class AdminController {
     }
 
 }
+
+
+
