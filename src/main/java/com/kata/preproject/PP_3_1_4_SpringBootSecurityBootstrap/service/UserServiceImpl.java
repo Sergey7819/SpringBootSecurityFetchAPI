@@ -4,6 +4,8 @@ import com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.dao.RoleDAO;
 import com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.dao.UserDAO;
 import com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.models.Role;
 import com.kata.preproject.PP_3_1_4_SpringBootSecurityBootstrap.models.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,7 +59,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user, Integer[] userRoles) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleDAO.getRoleByName("USER"));
+        if (userRoles != null) {
+            Arrays.stream(userRoles).forEach(id -> roles.add(roleDAO.getRoleById(id)));
+        }
+        Logger logger = LoggerFactory.getLogger(getClass());
+        logger.info("userRoles length: {}", userRoles.length);
+        user.setRoles(roles);
         if(!getUserById(user.getId()).getPassword().equals(user.getPassword())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }

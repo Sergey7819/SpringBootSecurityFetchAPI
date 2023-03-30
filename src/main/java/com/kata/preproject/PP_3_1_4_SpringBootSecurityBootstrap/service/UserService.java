@@ -8,7 +8,7 @@ public interface UserService {
     void save(User user, Integer[] userRoles);
     List<User> getAllUsers();
     User getUserById(Long id);
-    void update(User user);
+    void update(User user, Integer[] userRoles);
     void delete(Long id);
     User getUserByUsername(String username);
 
