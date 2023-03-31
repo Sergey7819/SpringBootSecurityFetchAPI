@@ -25,6 +25,8 @@ public class UserServiceImpl implements UserService {
     private final RoleDAO roleDAO;
     private final PasswordEncoder passwordEncoder;
 
+    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     public UserServiceImpl(UserDAO userDAO, RoleDAO roleDAO, PasswordEncoder passwordEncoder) {
         this.userDAO = userDAO;
         this.roleDAO = roleDAO;
@@ -65,7 +67,6 @@ public class UserServiceImpl implements UserService {
         if (userRoles != null) {
             Arrays.stream(userRoles).forEach(id -> roles.add(roleDAO.getRoleById(id)));
         }
-        Logger logger = LoggerFactory.getLogger(getClass());
         logger.info("userRoles length: {}", userRoles.length);
         user.setRoles(roles);
         if(!getUserById(user.getId()).getPassword().equals(user.getPassword())) {
